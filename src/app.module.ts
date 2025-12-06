@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppDataSource } from './database/configorm/configorm';
+import { AppDataSource } from '../configorm';
 
 import { UsuariosModule } from './usuarios/usuarios.module';
 
