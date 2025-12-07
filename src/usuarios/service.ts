@@ -21,6 +21,7 @@ export class UsuariosService {
   ) {}
 
   async registrar(crearUsuarioDto: CrearUsuarioDto): Promise<any> {
+
     const correoExistente = await this.usuarioRepository.findOne({
       where: { correo: crearUsuarioDto.correo },
     });
@@ -29,9 +30,12 @@ export class UsuariosService {
       throw new ConflictException('El correo ya está registrado');
     }
 
+
     const nombreUsuario = `${crearUsuarioDto.nombre.toLowerCase()}.${crearUsuarioDto.apellidoPaterno.toLowerCase()}`;
 
+
     const contrasenaHasheada = await bcrypt.hash(crearUsuarioDto.contrasena, 10);
+
 
     const nuevoUsuario = this.usuarioRepository.create({
       nombre: crearUsuarioDto.nombre,
@@ -44,6 +48,8 @@ export class UsuariosService {
     });
 
     const usuarioGuardado = await this.usuarioRepository.save(nuevoUsuario);
+
+
     let rolCliente = await this.rolRepository.findOne({
       where: { nombre: 'Cliente' },
     });
@@ -54,7 +60,6 @@ export class UsuariosService {
         descripcion: 'Rol de cliente por defecto',
       });
     }
-
     await this.rolUsuarioRepository.save({
       usuario: usuarioGuardado,
       rol: rolCliente,
@@ -130,6 +135,7 @@ export class UsuariosService {
 
     Object.assign(usuario, actualizarUsuarioDto);
     const usuarioActualizado = await this.usuarioRepository.save(usuario);
+
     const { contrasena, ...resultado } = usuarioActualizado;
     return resultado as Usuario;
   }
@@ -149,6 +155,7 @@ export class UsuariosService {
     if (!rol) {
       throw new NotFoundException(`Rol ${rolNombre} no encontrado`);
     }
+
     const rolExistente = await this.rolUsuarioRepository.findOne({
       where: {
         usuario: { id: usuarioId },
@@ -157,7 +164,7 @@ export class UsuariosService {
     });
 
     if (rolExistente) {
-      return;  
+      return; 
     }
 
     await this.rolUsuarioRepository.save({
