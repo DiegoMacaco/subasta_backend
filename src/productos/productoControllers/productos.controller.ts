@@ -46,22 +46,22 @@ export class ProductoController {
     console.log('   nombre:', typeof body.nombre, '→', body.nombre);
     console.log('   precio:', typeof body.precio, '→', body.precio);
     console.log('   disponibilidad:', typeof body.disponibilidad, '→', body.disponibilidad);
-    console.log('   subcategoriaId:', typeof body.subcategoriaId, '→', body.subcategoriaId); // ← Cambio aquí
+    console.log('   subcategoriaId:', typeof body.subcategoriaId, '→', body.subcategoriaId); 
     console.log('Archivo:', file?.filename);
     console.log('═══════════════════════════════════');
 
-    if (!body.subcategoriaId) { // ← Cambio aquí
+    if (!body.subcategoriaId) { 
       throw new BadRequestException('La subcategoría es requerida');
     }
 
-    const subcategoriaId = Number(body.subcategoriaId); // ← Cambio aquí
+    const subcategoriaId = Number(body.subcategoriaId); 
     if (isNaN(subcategoriaId)) {
       throw new BadRequestException('La subcategoría debe ser un número válido');
     }
 
     return this.service.create({
       ...body,
-      subcategoriaId: subcategoriaId, // ← Cambio aquí
+      subcategoriaId: subcategoriaId, 
       imagen: file?.filename ?? null,
     });
   }
@@ -73,8 +73,8 @@ export class ProductoController {
     @UploadedFile() imagen: any,
     @Body() data: any,
   ) {
-    if (data.subcategoriaId) { // ← Cambio aquí
-      data.subcategoriaId = Number(data.subcategoriaId); // ← Cambio aquí
+    if (data.subcategoriaId) { 
+      data.subcategoriaId = Number(data.subcategoriaId); 
     }
 
     return this.service.update(id, {
