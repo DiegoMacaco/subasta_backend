@@ -1,98 +1,264 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Sistema de Subastas (Backend)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API REST para la gestión integral de subastas en línea, automatizando procesos de pujas, productos y usuarios con arquitectura modular.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tabla de Contenidos
 
-## Description
+* **Tecnologías**
+* **Requisitos Previos**
+* **Instalación**
+* **Configuración**
+* **Ejecución**
+* **Estructura del Proyecto**
+* **API Endpoints**
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🛠 Tecnologías
 
-## Project setup
+* **Node.js** con **NestJS** - Framework backend progresivo
+* **TypeScript** - Tipado estático
+* **MySQL** - Base de datos relacional
+* **TypeORM** - ORM para manejo de base de datos
+* **JWT** - Autenticación y autorización
+* **Bcrypt** - Encriptación de contraseñas
+* **Class Validator** - Validación de datos
+* **Class Transformer** - Transformación de objetos
+* **Multer** - Manejo de archivos
+* **Dotenv** - Variables de entorno
+* **CORS** - Configuración de seguridad
 
-```bash
-$ pnpm install
-```
+## Requisitos Previos
 
-## Compile and run the project
+Antes de comenzar, asegúrate de tener instalado:
 
-```bash
-# development
-$ pnpm run start
+* **Node.js** (v16 o superior)
+* **MySQL** (v8.0 o superior)
+* **Git**
+* **pnpm** (se instalará en el proceso)
 
-# watch mode
-$ pnpm run start:dev
+## Instalación
 
-# production mode
-$ pnpm run start:prod
-```
-
-## Run tests
+### 1. Clonar el repositorio
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+git clone https://github.com/DiegoMacaco/subasta_backend.git
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 2. Navegar al directorio del proyecto
 
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+cd subasta_backend
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 3. Instalar pnpm (si no lo tienes)
 
-## Resources
+```bash
+npm install -g pnpm
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+### 4. Instalar dependencias
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Instala todas las dependencias necesarias ejecutando los siguientes comandos:
 
-## Support
+```bash
+pnpm install
+pnpm add class-validator class-transformer bcrypt @nestjs/mapped-types
+pnpm add -D @types/bcrypt
+pnpm install multer
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Configuración
 
-## Stay in touch
+### 1. Crear la base de datos
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Abre tu cliente MySQL y ejecuta:
 
-## License
+```sql
+CREATE DATABASE subastasDB;
+USE subastasDB;
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### 2. Configurar variables de entorno
+
+Crea un archivo `.env` en la raíz del proyecto:
+
+```bash
+cp .env.example .env
+```
+
+Edita el archivo `.env` con tus credenciales:
+
+```env
+# Base de datos
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=tu_contraseña
+DB_NAME=subastasDB
+DB_SYNC=true
+DB_LOGGING=true
+
+# JWT
+JWT_SECRET=tu_clave_secreta_jwt
+JWT_EXPIRATION=7d
+
+# Puerto del servidor
+PORT=3000
+```
+
+## Ejecución
+
+### Iniciar el servidor en modo desarrollo con seeds
+
+```bash
+pnpm run start
+```
+
+### Iniciar en modo desarrollo con hot-reload
+
+```bash
+pnpm run start:dev
+```
+
+### Iniciar en modo producción
+
+```bash
+pnpm run start:prod
+```
+
+El servidor estará disponible en: `http://localhost:3000`
+
+## Estructura del Proyecto
+
+```
+subasta_backend/
+└── src/
+    ├── comun/                      # Entidades compartidas
+    │   └── entities/
+    │       └── auditoria.entity.ts # Auditoría de registros
+    │
+    ├── database/                   # Configuración y seeds
+    │   ├── controladorSeeds.ts     # Controlador principal de seeds
+    │   ├── seedProductos/          # Seeds de productos
+    │   │   ├── seedCategorias.ts
+    │   │   ├── seedProductos.ts
+    │   │   └── seedSubCategoria.ts
+    │   └── seedUsuarios/           # Seeds de usuarios
+    │       ├── seedRol.ts
+    │       ├── seedRolUsuario.ts
+    │       └── seedUsuario.ts
+    │
+    ├── pedidos/                    # Módulo de pedidos
+    │   ├── dto/                    # Data Transfer Objects
+    │   │   ├── actualizarPedido.dto.ts
+    │   │   ├── createPedido.dto.ts
+    │   │   └── filtrarPedido.dto.ts
+    │   ├── pedidosControllers/
+    │   │   └── pedidos.controller.ts
+    │   ├── pedidosEntities/
+    │   │   ├── detallePedido.entity.ts
+    │   │   └── pedidos.entity.ts
+    │   ├── pedidosRepositories/
+    │   │   └── pedido.repository.ts
+    │   ├── pedidosServices/
+    │   │   └── pedidos.service.ts
+    │   └── pedidos.module.ts
+    │
+    ├── productos/                  # Módulo de productos y pujas
+    │   ├── dto/                    # DTOs de productos y pujas
+    │   │   ├── actualizarCategoria.dto.ts
+    │   │   ├── actualizarProducto.dto.ts
+    │   │   ├── actualizarSubCategoria.dto.ts
+    │   │   ├── crearCategoria.dto.ts
+    │   │   ├── crearProducto.dto.ts
+    │   │   ├── crearpuja.ts
+    │   │   ├── crearSubCategoria.dto.ts
+    │   │   └── iniciarpuja.ts
+    │   ├── productoControllers/
+    │   │   ├── categoriaProductos.controller.ts
+    │   │   ├── productos.controller.ts
+    │   │   ├── puja.ts
+    │   │   └── subcategoriaProductos.controller.ts
+    │   ├── productoRepositories/
+    │   │   ├── categoriaProducto.repository.ts
+    │   │   ├── producto.repository.ts
+    │   │   ├── puja.ts
+    │   │   └── subcategoriasProductos.repository.ts
+    │   ├── productosEntities/
+    │   │   ├── categoriaProducto.entity.ts
+    │   │   ├── producto.entity.ts
+    │   │   ├── puja.entity.ts
+    │   │   └── subcategoriaProductos.entity.ts
+    │   ├── productoService/
+    │   │   ├── categoriaProducto.service.ts
+    │   │   ├── productos.service.ts
+    │   │   ├── puja.ts
+    │   │   └── subcategoriaProductos.service.ts
+    │   ├── productos.module.ts
+    │   └── puja.ts
+    │
+    ├── usuarios/                   # Módulo de usuarios
+    │   ├── dto/
+    │   │   ├── actualizar-usuario.dto.ts
+    │   │   ├── crear-usuario.dto.ts
+    │   │   └── login-usuario.dto.ts
+    │   ├── usuarioEntities/
+    │   │   ├── rol.entity.ts
+    │   │   ├── rolUsuario.entity.ts
+    │   │   └── usuario.entity.ts
+    │   ├── service.ts
+    │   ├── usuarios.controller.ts
+    │   ├── usuarios.module.ts
+    │   └── usuarios.service.ts
+    │
+    ├── app.controller.spec.ts      # Tests del controlador principal
+    ├── app.controller.ts           # Controlador principal
+    ├── app.module.ts               # Módulo raíz
+    ├── app.service.ts              # Servicio principal
+    └── main.ts                     # Punto de entrada
+```
+
+## API Endpoints
+
+### Autenticación
+- `POST /auth/register` - Registrar nuevo usuario
+- `POST /auth/login` - Iniciar sesión
+
+### Usuarios
+- `GET /usuarios` - Obtener todos los usuarios
+- `GET /usuarios/:id` - Obtener usuario por ID
+- `PUT /usuarios/:id` - Actualizar usuario
+- `DELETE /usuarios/:id` - Eliminar usuario
+
+### Productos
+- `GET /productos` - Listar productos
+- `GET /productos/:id` - Obtener producto por ID
+- `POST /productos` - Crear producto
+- `PUT /productos/:id` - Actualizar producto
+- `DELETE /productos/:id` - Eliminar producto
+
+### Categorías
+- `GET /categorias` - Listar categorías
+- `POST /categorias` - Crear categoría
+- `PUT /categorias/:id` - Actualizar categoría
+- `DELETE /categorias/:id` - Eliminar categoría
+
+### Pujas
+- `POST /pujas/iniciar` - Iniciar subasta
+- `POST /pujas/pujar` - Realizar puja
+- `GET /pujas/:id` - Obtener pujas de un producto
+
+### Pedidos
+- `GET /pedidos` - Listar pedidos
+- `GET /pedidos/:id` - Obtener pedido por ID
+- `POST /pedidos` - Crear pedido
+- `PUT /pedidos/:id` - Actualizar pedido
+
+## Base de Datos
+
+El proyecto utiliza **TypeORM** con sincronización automática. Las tablas se crearán automáticamente al iniciar el servidor si `DB_SYNC=true`.
+
+
+
+## Autor
+
+Diego Macaco - [GitHub](https://github.com/DiegoMacaco)
